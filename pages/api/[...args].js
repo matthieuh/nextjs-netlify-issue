@@ -44,8 +44,8 @@ const proxy = () =>
     pathRewrite,
     followRedirects: true,
     secure: false,
-    onProxyReq: async (proxyReq) => {
-      // proxyReq.setHeader('x-random-header', 'random-value');
+    onProxyReq: (proxyReq) => {
+      proxyReq.setHeader('x-random-header', 'random-value');
     },
     logLevel: process.env.NODE_ENV === 'production' ? 'error' : 'debug',
   });
