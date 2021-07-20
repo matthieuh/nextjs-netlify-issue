@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@netlify/plugin-nextjs": "^3.4.1",
+    "@netlify/plugin-nextjs": "^3.7.1",
     "http-proxy-middleware": "^2.0.0",
     "next": "10.2.3",
     "react": "17.0.2",
