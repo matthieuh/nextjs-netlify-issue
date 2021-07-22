@@ -38,16 +38,16 @@ const pathRewrite = pathToApiProp('newPath');
 
 const proxy = () =>
   createProxyMiddleware(['/api/services/'], {
+    logLevel: process.env.NODE_ENV === 'production' ? 'error' : 'debug',
     target: 'https://example.com',
     changeOrigin: true,
     router,
     pathRewrite,
     followRedirects: true,
     secure: false,
-    // onProxyReq: (proxyReq) => {
-    //   proxyReq.setHeader('x-random-header', 'random-value');
-    // },
-    logLevel: process.env.NODE_ENV === 'production' ? 'error' : 'debug',
+    onProxyReq: (proxyReq) => {
+      proxyReq.setHeader('x-random-header', 'random-value');
+    },
   });
 
 const handler = async (req, res) => {
@@ -63,6 +63,7 @@ const handler = async (req, res) => {
 
 export const config = {
   api: {
+    externalResolver: true,
     bodyParser: false,
   },
 };
