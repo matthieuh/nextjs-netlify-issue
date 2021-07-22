@@ -17,13 +17,13 @@ const runMiddleware = (req, res, fn) => {
   return new Promise((resolve, reject) => {
     fn(req, res, (result) => {
       if (result instanceof Error) {
-        return reject(result)
+        return reject(result);
       }
 
-      return resolve(result)
-    })
-  })
-}
+      return resolve(result);
+    });
+  });
+};
 
 const pathToApiProp = (prop) =>
   Object.entries(apisByPath).reduce((acc, [index, value]) => {
@@ -39,12 +39,13 @@ const pathRewrite = pathToApiProp('newPath');
 const proxy = () =>
   createProxyMiddleware(['/api/services/'], {
     logLevel: process.env.NODE_ENV === 'production' ? 'error' : 'debug',
-    target: 'https://example.com',
+    target: 'https://jsonplaceholder.typicode.com',
+    // router,
+    // pathRewrite,
+    pathRewrite: { '^/api/proxy': '' },
     changeOrigin: true,
-    router,
-    pathRewrite,
-    followRedirects: true,
-    secure: false,
+    // followRedirects: true,
+    // secure: false,
     onProxyReq: (proxyReq) => {
       proxyReq.setHeader('x-random-header', 'random-value');
     },
