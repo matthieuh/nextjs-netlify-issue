@@ -54,7 +54,6 @@ const handler = async (req, res) => {
   try {
     return runMiddleware(req, res, proxy());
   } catch (error) {
-
     res.status(error.status || 500).json({
       code: error.code,
       error: error.message,
