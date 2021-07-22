@@ -142,13 +142,12 @@ const Home = () => {
 };
 
 
-// export async function getServerSideProps(ctx) {
-//   return {
-//     props: {
-
-//       backendProp: true,
-//     }
-//   }
-// }
+export async function getServerSideProps(ctx) {
+  return {
+    props: {
+      backendProp: true,
+    }
+  }
+}
 
 export default Home;
