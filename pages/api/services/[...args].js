@@ -47,7 +47,9 @@ const proxy = () =>
     // followRedirects: true,
     // secure: false,
     onProxyReq: (proxyReq) => {
+      proxyReq.socket.pause();
       proxyReq.setHeader('x-random-header', 'random-value');
+      proxyReq.socket.resume();
     },
   });
 
